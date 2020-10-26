@@ -1,0 +1,33 @@
+[entryPoints]
+  [entryPoints.web]
+    address = ":80"
+    [entryPoints.web.http]
+      [entryPoints.web.http.redirections]
+        [entryPoints.web.http.redirections.entryPoint]
+          to = "websecure"
+          scheme = "https"
+          permanent = true
+
+[entryPoints.websecure]
+address = ":443"
+  [entryPoints.websecure.http.tls]
+    certResolver = "default"
+    
+[providers]
+  [providers.docker]
+    watch = true
+    exposedByDefault = false
+    network = "web"
+
+[certificatesResolvers]
+  [certificatesResolvers.default]
+    [certificatesResolvers.default.acme]
+      email = "email@domain.com" # TODO: Change with your own email
+      storage = "acme.json"
+      caServer = "https://acme-v01.api.letsencrypt.org/directory"
+    [certificatesResolvers.default.acme.tlsChallenge]
+
+# TODO: Remove in production 
+[api]
+  dashboard = true
+  insecure = true
