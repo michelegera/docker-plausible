@@ -9,8 +9,8 @@ services:
       - "8080:8080" # TODO: Remove in production
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - $PWD/traefik.toml:/etc/traefik/traefik.toml
-      - $PWD/acme.json:/acme.json
+      - $PWD/traefik/traefik.toml:/etc/traefik/traefik.toml
+      - $PWD/traefik/acme.json:/acme.json
     restart: always
     networks:
       - web
