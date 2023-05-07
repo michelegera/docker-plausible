@@ -41,6 +41,7 @@ services:
     restart: always
     labels:
       - "traefik.enable=true"
+      - "traefik.docker.network=web"
       - "traefik.http.routers.plausible.rule=Host(`your.domain.com`)" # TODO: Change with your own domain
       - "traefik.http.routers.plausible.entrypoints=websecure"
       - "traefik.http.services.plausible.loadbalancer.server.port=8000"
